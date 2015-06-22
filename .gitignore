@@ -1,0 +1,9 @@
+*.log
+*.mtc*
+*.bcf
+*.aux
+*.toc
+*.run*
+*.out
+*.nlo
+*.maf

@@ -1,0 +1,110 @@
+%% makeindex these0.nlo -s nomencl.ist -o these0.nls -t these0.nlg
+
+\documentclass[11pt, twoside, openright]{thesis}
+
+%%==============================
+% Link to all project .bib
+\addbibresource{ 
+  {bib/theory.bib}
+  {bib/atlas.bib}
+}
+%%==============================
+% The path to the figures
+\graphicspath{{./figures/}}
+%%%============================== 
+% Include only some chapter for quick compilation
+%\includeonly{
+%			{tex/abstract},
+%}
+%%%==============================
+
+\unilogo{figures/university.png}
+\lablogo{figures/lal.jpg}
+\title{The Thesis full title}
+\author{Estelle Scifo}
+\university{Université Paris Sud}
+\docschool{\'Ecole Doctorale PNC}
+\lab{Laboratoire de l'Accélérateur Linéaire}
+%\field{Physique des Particules}
+\defensedate{11 juillet 2014}
+\serienumber{LAL 14-169}
+
+\njurymembers{5}
+\addjurymember{1}{M.}{Prénom Nom}{Directeur de thèse}
+\addjurymember{2}{Mme.}{Prénom Nom}{Président du jury}
+\addjurymember{3}{M.}{Prénom Nom}{Rapporteur}
+\addjurymember{4}{Mme.}{Prénom Nom}{Rapporteur}
+\addjurymember{5}{M.}{Prénom Nom}{Examinateur}
+
+\begin{document}
+
+
+%%============================== Titre et sommaires
+\frontmatter
+
+\maketitle
+
+\dominitoc % sommaires partiels en début de chapitre
+
+
+\begin{dedication}
+  Some text... 
+\end{dedication}
+
+
+\include{tex/abstract}
+
+\newpage
+\hypertarget{contents}{}
+\addstarredchapter{Contents}
+\tableofcontents
+
+%\printnomenclature
+%\mtcfixnomenclature % necessaire pour éviter le decalage des minitoc
+%%==============================
+
+
+
+%%==============================
+%%============================== Corps du texte
+%\linenumbers* %%numérotation des lignes à partir de là
+\mainmatter
+
+%%-------------------------------
+\include{tex/intro}
+
+%%-------------------------------
+\part{Theory overview}
+\include{tex/theory}
+
+%%-------------------------------
+\part{Experimental setup and performances}
+\include{tex/lhc}
+\include{tex/atlas}
+
+%%-------------------------------
+\part{Outlooks and conclusion}
+\include{tex/conclusion}
+
+
+%\backmatter
+%%==============================
+\chapter*{Bibliography}
+\addstarredchapter{Bibliography}
+\bibbysegment[heading=subbibliography]
+
+%%%==============================
+\appendix
+\include{tex/appendix}
+
+
+\backmatter
+%%==============================
+\include{tex/thanks}
+
+
+
+\end{document}
+%%==============================
+%%==============================
+%%==============================
