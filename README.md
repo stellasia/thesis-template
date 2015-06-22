@@ -15,11 +15,15 @@
 
     \documentclass[11pt, twoside, openright]{thesis}
 
-    %%==============================
+    %%%%%%%%%%%%%%
+    %% All the next parameters are optional
+    %%%%%%%%%%%%%%
+
     % Link to all project .bib
     \addbibresource{bib/theory.bib}
     \addbibresource{bib/atlas.bib}
 
+    %% Title page
     \unilogo{figures/university.png}
     \lablogo{figures/lal.jpg}
     \title{The Thesis full title}
