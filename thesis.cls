@@ -12,6 +12,8 @@
 
 \RequirePackage{graphicx}
 \RequirePackage[small, bf, up]{caption}
+\renewcommand{\captionfont}{\it \small}
+
 \RequirePackage{subfigure}
 
 \RequirePackage[svgnames]{xcolor}
@@ -54,20 +56,38 @@
   pdfa = true,
 }
 
+\makeatletter
+\renewcommand{\@chapapp}{Chapter}
+\makeatother
+
+\RequirePackage{nameref}  
 \RequirePackage[
   backend=biber,
-  %bibencoding=utf8,
-  % refsection=chapter,
   refsegment=chapter,
   url=false,
   backref=true,
   sorting=none,
-  %sortcites=true,
-  %sorting=nyt,
-  %style=apa,
   autocite=plain,
   style=numeric-comp %% use numeric-comp instead of just numeric in order to have compact mutiple citations, ie [1-4] instead of [1,2,3,4]
 ]{biblatex}
+
+%% http://tex.stackexchange.com/questions/69139/refsegment-in-biblatex-broken-since-update-to-tl2012
+%% \defbibheading{subbibliography}{\section*{References for  Chapter~\ref{refsegment:\therefsegment}: \nameref{refsegment:\therefsegment}} }
+\defbibheading{subbibliography}{\section*{References for  Chapter~\ref{refsegment:\therefsection\therefsegment}: \nameref{refsegment:\therefsection\therefsegment}} }
+
+\DefineBibliographyStrings{english}{%
+  backrefpage =  {{Cited on page}},% originally "cited on page"
+  backrefpages = {Cited on pages},% originally "cited on pages"
+}
+
+\renewbibmacro*{pageref}{% http://tex.stackexchange.com/questions/76133/bibliography-backref-on-new-line-with-smaller-font-size
+  \iflistundef{pageref}
+    {}
+    {\small \itshape \hfill {
+       \ifnumgreater{\value{pageref}}{1}
+         {\bibstring{backrefpages}\ppspace}
+     {\bibstring{backrefpage}\ppspace}%
+       \printlist[pageref][-\value{listtotal}]{pageref}}}}
 
 
 %% Epigraph style
@@ -287,7 +307,6 @@
 
   \begin{center} 
     \vskip1.5cm 
-    %{\large Pr\'esent\'ee pour obtenir}\\[0.5cm]
     
     \ifdef{\@university}{
       \textsc{\Huge \@university}}{~}\\[1cm]
